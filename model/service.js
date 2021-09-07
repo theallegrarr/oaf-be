@@ -22,6 +22,12 @@ class CustomerService {
             return cb(err, data)
         })
     }
+
+    getCustomerSummaries(cb){
+        this.db.all(queries.getCustomerSummaries, {}, (err, data) => {
+            return cb(err, data)
+        })
+    }
 }
 
 
