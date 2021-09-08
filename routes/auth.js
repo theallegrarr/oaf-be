@@ -12,13 +12,13 @@ function routes(){
     try {
       let user = req.body;
       db.getAdmin((err, data) => {
-            //console.log(err, data)
+            console.log(err, data)
             const existingUser=data
             if(!existingUser){
                 res.status(400).json({ success: false, error: "User does not exist" })
             }
             const passwordsMatch = bcrypt.compareSync(user.password, existingUser.password)
-            if(!passwordsMatch){
+            if(!passwordsMatch||user.username!='admin'){
                 res.status(400).json({ success: false, error: "Bad credentials" })
             }
             //console.log(createToken(existingUser))

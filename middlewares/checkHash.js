@@ -20,6 +20,5 @@ db.repay(rData, (err, data) => {
  * @todo
  * Account for unexhausted payments
  * 1, Login
- * 2, Toastify
- * 3, Single Repay
+ * 3, Single Repay or remove it
 */

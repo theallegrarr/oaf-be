@@ -18,15 +18,18 @@ const insert_into_summaries = `INSERT INTO CustomerSummaries (SeasonID, TotalRep
                                 ('2011', '200', '900', '3'),
                                 ('2013', '800', '1700', '3');`;
 
+const insert_admin = `INSERT INTO admin (username, password) VALUES ('admin', '$2b$10$./p3Txs3ULys2q9RbHgTsOWnUXw9Okpa4.EhkIJP.w03wD4Xcdtju');`;
+
 const seed = async () => {
     try {
         console.log("seeding.....")
         const err1 = await db.seed(insert_into_seasons)
         const err2 = await db.seed(insert_into_customers)
         const err3 = await db.seed(insert_into_summaries)
+        const err4 = await db.seed(insert_admin)
 
-        if(err1||err2||err3){
-            console.log(err1, err2, err3)
+        if(err1||err2||err3||err4){
+            console.log(err1, err2, err3, err4)
         } else {
             console.log("seasons seed done")
         }   
