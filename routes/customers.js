@@ -23,8 +23,8 @@ function routes(){
     router.post("/pay", validateToken, async (req, res) => {
         try {
         let paymentList = req.body;
-        db.repay(paymentList.pay, (err, data) => {
-            if(err.message){
+        db.repay(paymentList, (err, data) => {
+            if(err){
                 res.status(500).json({
                     success: false,
                 })
