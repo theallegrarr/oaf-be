@@ -10,37 +10,36 @@ function routes(){
         try {
           db.getCustomerSummaries((err, data) => {
                 //console.log(data)
-                res.status(200).json({
+                return res.status(200).json({
                   success: true,
                   data,
-                })
+                });
           })
         } catch(error) {
-          res.status(500).json({ success: false, error })
+          return res.status(500).json({ success: false, error });
         }
       })
     // pay off some credit
-    router.post("/pay", validateToken, async (req, res) => {
+    router.post("/pay", validateToken, (req, res) => {
         try {
-        let paymentList = req.body;
-        db.repay(paymentList, (err, data) => {
-            if(err){
-                res.status(500).json({
-                    success: false,
-                })
-            } else {
-                db.getCustomerSummaries((err, newData) => {
-                    res.status(200).json({
-                        success: true,
-                        data: newData
+            let paymentList = req.body;
+            db.repay(paymentList, (err, data) => {
+                if(data){
+                    db.getCustomerSummaries((err, newData) => {
+                        if(newData){
+                            res.statusCode = 200
+                            return res.json({
+                                success: true,
+                                data: newData
+                            });
+                        }
                     })
-                })
-            }
-        })
-    } catch(error) {
-      res.status(500).json({ success: false, error })
-    }
-  })
+                }
+            })
+        } catch(error) {
+            return res.status(500).json({ success: false, error });
+        }
+    })
 
   return router;
 }

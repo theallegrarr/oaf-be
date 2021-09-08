@@ -29,13 +29,16 @@ class CustomerService {
         })
     }
 
-    repay(data, cb){
-        data.forEach(item => {
+    async repay(data, cb){
+        await data.forEach(item => {
             let singleQuery = queries.updateCS(item)
+            //console.log(singleQuery)
             this.db.all(singleQuery, {}, (err, data) => {
-                return cb(err, data)
+                return null
             })
         })
+
+        return cb(null, true)
     }
 }
 

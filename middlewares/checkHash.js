@@ -1,6 +1,6 @@
-const bcrypt = require('bcrypt')
+//const bcrypt = require('bcrypt')
 const db = require('../model/service')
-const queries = require('../model/queries')
+//const queries = require('../model/queries')
 
 //console.log(bcrypt.hashSync('password', 10))
 //console.log(bcrypt.compareSync('password', '$2b$10$./p3Txs3ULys2q9RbHgTsOWnUXw9Okpa4.EhkIJP.w03wD4Xcdtju'))
@@ -14,3 +14,12 @@ const rData = [
 db.repay(rData, (err, data) => {
     console.log(err, data)
 })
+
+
+/**
+ * @todo
+ * Account for unexhausted payments
+ * 1, Login
+ * 2, Toastify
+ * 3, Single Repay
+*/
