@@ -21,20 +21,21 @@ function routes(){
       })
     // pay off some credit
     router.post("/pay", validateToken, async (req, res) => {
-        let token=''
         try {
-        let payments = req.body;
-        db.getAdmin((err, data) => {
-
-                res.status(200).json({
-                success: true,
-                user: {
-                    id: "",
-                    name: "OAF",
-                    role: "Administrator",
-                    token
-                },
-            })
+        let paymentList = req.body;
+        db.repay(paymentList.pay, (err, data) => {
+            if(err.message){
+                res.status(500).json({
+                    success: false,
+                })
+            } else {
+                db.getCustomerSummaries((err, newData) => {
+                    res.status(200).json({
+                        success: true,
+                        data: newData
+                    })
+                })
+            }
         })
     } catch(error) {
       res.status(500).json({ success: false, error })
