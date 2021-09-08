@@ -28,6 +28,15 @@ class CustomerService {
             return cb(err, data)
         })
     }
+
+    repay(data, cb){
+        data.forEach(item => {
+            let singleQuery = queries.updateCS(item)
+            this.db.all(singleQuery, {}, (err, data) => {
+                return cb(err, data)
+            })
+        })
+    }
 }
 
 
