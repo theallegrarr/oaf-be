@@ -5,10 +5,11 @@ const db = require('../model/service')
 require('dotenv').config()
 
 function routes(){
+    // get customer summaries
     router.get("/all", validateToken, async (req, res) => {
         try {
           db.getCustomerSummaries((err, data) => {
-                console.log(data)
+                //console.log(data)
                 res.status(200).json({
                   success: true,
                   data,
@@ -18,22 +19,23 @@ function routes(){
           res.status(500).json({ success: false, error })
         }
       })
-  router.post("/pay", validateToken, async (req, res) => {
-    let token=''
-    try {
-      let payments = req.body;
-      db.getAdmin((err, data) => {
+    // pay off some credit
+    router.post("/pay", validateToken, async (req, res) => {
+        let token=''
+        try {
+        let payments = req.body;
+        db.getAdmin((err, data) => {
 
-            res.status(200).json({
-              success: true,
-              user: {
-                id: "",
-                name: "OAF",
-                role: "Administrator",
-                token
-              },
+                res.status(200).json({
+                success: true,
+                user: {
+                    id: "",
+                    name: "OAF",
+                    role: "Administrator",
+                    token
+                },
             })
-      })
+        })
     } catch(error) {
       res.status(500).json({ success: false, error })
     }

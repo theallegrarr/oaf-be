@@ -13,6 +13,9 @@ const insert_into_customers = `INSERT INTO Customers (CustomerName) VALUES
 const insert_into_summaries = `INSERT INTO CustomerSummaries (SeasonID, TotalRepaid, TotalCredit, CustomerID) VALUES
                                 ('2011', '400', '700', '1'),
                                 ('2012', '200', '900', '2'),
+                                ('2013', '200', '900', '1'),
+                                ('2013', '200', '900', '2'),
+                                ('2011', '200', '900', '3'),
                                 ('2013', '800', '1700', '3');`;
 
 const seed = async () => {
