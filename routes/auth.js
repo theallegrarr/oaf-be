@@ -12,7 +12,7 @@ function routes(){
     try {
       let user = req.body;
       db.getAdmin((err, data) => {
-            console.log(err, data)
+            //console.log(err, data)
             const existingUser=data
             if(!existingUser){
                 res.status(400).json({ success: false, error: "User does not exist" })
